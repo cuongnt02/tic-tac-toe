@@ -1,0 +1,18 @@
+# clang config
+compile_commands.json
+
+
+# development plan (local) -> may move to README
+development_plan.md
+
+
+# local resource
+asset/
+
+
+# build folder
+build/
+
+
+# cache
+.cache/
