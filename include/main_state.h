@@ -6,10 +6,10 @@
 
 class Renderer;
 
-class IntroState : public GameState {
+class MainState : public GameState {
     public:
-        static IntroState& instance() {
-            static IntroState* instance = new IntroState();
+        static MainState& instance() {
+            static MainState* instance = new MainState();
             return *instance;
         }
 
@@ -21,12 +21,17 @@ class IntroState : public GameState {
         void render();
         
     private:
-        IntroState() {};
+        MainState() {};
 
         Texture m_background_texture{};
         Texture m_text_texture{};
+        Texture m_symbol_x_texture{};
+        Texture m_symbol_o_texture{};
+        
 
         Sprite m_background_sprite;
+        Sprite m_symbol_x_sprite;
+        Sprite m_symbol_o_sprite;
         
 
 };

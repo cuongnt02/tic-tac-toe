@@ -6,4 +6,6 @@ class StateManager;
 extern Renderer renderer;
 extern StateManager state_manager;
 
+const int SCREEN_HEIGHT = 640;
+const int SCREEN_WIDTH = 640;
 #endif

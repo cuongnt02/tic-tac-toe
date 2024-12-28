@@ -20,22 +20,21 @@ Texture::~Texture(){
 // Load the texture from specified file path
 bool Texture::loadFromFile(SDL_Renderer& renderer, std::string path){
     free();
-    SDL_Texture* texture{ IMG_LoadTexture(&renderer, path.c_str()) };
+    SDL_Texture* texture =  IMG_LoadTexture(&renderer, path.c_str());
     if (texture == nullptr) {
         SDL_LogError(SDL_LOG_CATEGORY_VIDEO, "Error creating texture: %s\n", SDL_GetError());
     } else {
         m_texture = texture;
 
-        float width{};
-        float height{};
-
-        bool success = SDL_GetTextureSize(m_texture, &width, &height);
-        if (success) {
+        float width = 0;
+        float height = 0;
+        bool failure = SDL_GetTextureSize(texture, &width, &height);
+        if (!failure) {
             m_width = width;
             m_height = height;
         }
         else {
-            SDL_LogWarn(SDL_LOG_CATEGORY_VIDEO, "Warning: Texture data may be bad. SDL_Error: %s\n", SDL_GetError());
+            SDL_LogError(SDL_LOG_CATEGORY_VIDEO, "Error: Bad texture.  SDL_Error: %s\n", SDL_GetError());
         }
     }
     return m_texture != nullptr;

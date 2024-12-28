@@ -23,7 +23,7 @@ Renderer::~Renderer() {
 }
 
 
-SDL_Renderer& Renderer::getRenderer() const {
+SDL_Renderer& Renderer::getRenderer() {
     return *m_renderer;
 }
         
@@ -34,7 +34,7 @@ bool Renderer::init(SDL_Window& window) {
         return false;
     }
     else {
-        SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, "Renderer created successfully!");
+        SDL_Log("Renderer created successfully!");
         return true;
     }
 }
@@ -48,6 +48,6 @@ bool Renderer::createRenderer(SDL_Window* window) {
     return true;
 }
 
-void Renderer::renderSprite(Sprite& sprite) {
-    SDL_RenderTexture(m_renderer, &sprite.get_texture().get_internal_texture(), NULL, NULL);
+void Renderer::renderSprite(Sprite& sprite, Rect dst) {
+    SDL_RenderTexture(m_renderer, &sprite.get_texture().get_internal_texture(), &sprite.get_rect(), &dst);
 }
